@@ -20,6 +20,12 @@ fn make_constant_value(
             naga::Literal::F32(v) => quote::quote! {
                 #v
             },
+            naga::Literal::F16(v) => {
+                let bits = v.to_bits();
+                quote::quote! {
+                    ::half::f16::from_bits(#bits)
+                }
+            },
             naga::Literal::U32(v) => quote::quote! {
                 #v
             },

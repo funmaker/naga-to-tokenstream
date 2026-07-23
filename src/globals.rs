@@ -34,7 +34,10 @@ fn address_space_to_tokens(address_space: naga::AddressSpace) -> proc_macro2::To
             })
         }
         naga::AddressSpace::Handle => quote::quote!(naga::AddressSpace::Handle),
-        naga::AddressSpace::PushConstant => quote::quote!(naga::AddressSpace::PushConstant),
+        naga::AddressSpace::Immediate => quote::quote!(naga::AddressSpace::Immediate),
+        naga::AddressSpace::TaskPayload => quote::quote!(naga::AddressSpace::TaskPayload),
+        naga::AddressSpace::RayPayload => quote::quote!(naga::AddressSpace::RayPayload),
+        naga::AddressSpace::IncomingRayPayload => quote::quote!(naga::AddressSpace::IncomingRayPayload),
     }
 }
 

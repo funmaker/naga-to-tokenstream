@@ -20,8 +20,14 @@ pub fn make_entry_point(
     if args.gen_naga {
       let stage = match entry_point.stage {
         naga::ShaderStage::Vertex => quote::quote! { naga::ShaderStage::Vertex },
+        naga::ShaderStage::Task => quote::quote! { naga::ShaderStage::Task },
+        naga::ShaderStage::Mesh => quote::quote! { naga::ShaderStage::Mesh },
         naga::ShaderStage::Fragment => quote::quote! { naga::ShaderStage::Fragment },
         naga::ShaderStage::Compute => quote::quote! { naga::ShaderStage::Compute },
+        naga::ShaderStage::RayGeneration => quote::quote! { naga::ShaderStage::RayGeneration },
+        naga::ShaderStage::Miss => quote::quote! { naga::ShaderStage::Miss },
+        naga::ShaderStage::AnyHit => quote::quote! { naga::ShaderStage::AnyHit },
+        naga::ShaderStage::ClosestHit => quote::quote! { naga::ShaderStage::ClosestHit },
       };
       items.push(syn::Item::Const(syn::parse_quote! {
           pub const STAGE: naga::ShaderStage = #stage;
